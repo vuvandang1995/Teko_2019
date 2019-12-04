@@ -27,6 +27,9 @@ module "records__id-dev_teko_vn" {
 - Nếu `proxied = true` nghĩa là có ssl, domain sẽ trỏ về ip của Cloudflare(thực chất vẫn trỏ về ip của mình định nghĩa kia, chỉ là giấu đi thôi)
 - Nếu `proxied = false` nghĩa là k có ssl, domain sẽ trỏ thẳng về ip mình định nghĩa bên trên
 
-## Hay hay. 
+## Hay hay nè
 
 ![VD](../images/df.png)
+
+- Nhìn trong hình sẽ thấy cái dòng: `tmpfs           7,7G  226M  7,5G   3% /dev/shm` 
+- `shm` viết tắt của share memory, nghĩa là nếu tạo 1 file trong thư mục đó, nó sẽ đc lưu trên memory(RAM), vì thế tốc độ đọc ghi rất là nhanh <3
