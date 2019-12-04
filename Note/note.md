@@ -29,4 +29,4 @@ module "records__id-dev_teko_vn" {
 
 ## Hay hay. 
 
-![ta có](../images/Screenshot from 2019-12-04 17-45-48.png)
+![V](../images/Screenshot from 2019-12-04 17-45-48.png)
