@@ -40,3 +40,7 @@ module "records__id-dev_teko_vn" {
 ## Triển khai app trong K8s
 - Với các `Endpoint APIs` thì mới cần tạo `resource service`, cần có `health check`
 - Còn với `web app`(frontend) và `celery` (worker) thì không cần tạo `resource service`, cần có `health check`
+
+## Export env từ kết quả 1 câu lệnh khác
+- export TAGS=Infras-`openssl rand -base64 8`
+
