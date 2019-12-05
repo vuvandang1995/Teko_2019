@@ -33,3 +33,10 @@ module "records__id-dev_teko_vn" {
 
 - Nhìn trong hình sẽ thấy cái dòng: `tmpfs           7,7G  226M  7,5G   3% /dev/shm` 
 - `shm` viết tắt của share memory, nghĩa là nếu tạo 1 file trong thư mục đó, nó sẽ đc lưu trên memory(RAM), vì thế tốc độ đọc ghi rất là nhanh <3
+
+## triển khai k8s thì có gì hay?
+- Đứng trước k8s có `haprory` làm load balancing cho k8s (haproyx -> ingress): IP haproxy chính là đầu vào cho các `web app` (frontend)
+- Đứng trước k8s còn có 1 cụm `Kong`: IP kong proxy chính là đầu vào cho các `Endpoint APIs` (backend)
+## Triển khai app trong K8s
+- Với các `Endpoint APIs` thì mới cần tạo `resource service`, cần có `health check`
+- Còn với `web app`(frontend) và `celery` (worker) thì không cần tạo `resource service`, cần có `health check`
