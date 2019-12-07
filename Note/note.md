@@ -45,7 +45,7 @@ module "records__id-dev_teko_vn" {
 - export TAGS=Infras-`openssl rand -base64 8`
 
 ## Bash shell
-- `for` chỉ số từng phần từ trong array
+### 1.`for` chỉ số từng phần từ trong array
 
 ```
 #!/bin/bash
@@ -56,7 +56,7 @@ done
 ```
   - kết quả: `0, 1, 2, 3`
   
-- `for` từng phần tử trong array
+### 2. `for` từng phần tử trong array
 
 ```
 #!/bin/bash
