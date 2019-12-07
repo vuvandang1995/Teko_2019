@@ -44,3 +44,27 @@ module "records__id-dev_teko_vn" {
 ## Export env từ kết quả 1 câu lệnh khác
 - export TAGS=Infras-`openssl rand -base64 8`
 
+## Bash shell
+- `for` chỉ số từng phần từ trong array
+
+```
+#!/bin/bash
+AR=('foo' 'bar' 'baz' 'bat')
+for i in "${!AR[@]}"; do
+  echo $i
+done
+```
+  - kết quả: `0, 1, 2, 3`
+  
+- `for` từng phần tử trong array
+
+```
+#!/bin/bash
+AR=('foo' 'bar' 'baz' 'bat')
+for item in "${AR[@]}"; do
+  echo $item
+done
+```
+   - kết quả: `foo bar baz bat`
+   
+**lưu ý: Điểm khác nhau ở 2 vòng for trên là dấu !**
