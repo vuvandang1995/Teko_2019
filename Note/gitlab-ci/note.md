@@ -21,6 +21,8 @@ run:clean-up-gitlab-runner:
     variables:
       - $CLEAN_UP
 ```
+- **Ý nghĩa đoạn gitlab-ci là:**
+  - runner pull repo về, chạy đoạn script `clean-up-gitlab-runners-offline` khi và chỉ khi ở trên `master` brach và có variable truyền vào là `CLEAN_UP`. cụ thể xem hình bên dưới
 
 - và lập lịch cho nó ở:
 
