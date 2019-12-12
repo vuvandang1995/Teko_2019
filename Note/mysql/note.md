@@ -1,6 +1,6 @@
 ## remove data
 
-###Export:
+### Export:
 `mysqldump -u username –-password=your_password database_name > file.sql`
 
 ## Import:
