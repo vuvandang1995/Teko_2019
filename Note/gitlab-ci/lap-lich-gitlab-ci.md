@@ -29,3 +29,24 @@ run:clean-up-gitlab-runner:
 
 ![lập lịch](../../images/laplich.png)
 
+## Sử dụng api của Gitlab để thao tác
+- Ví dụ như bạn muốn dùng API để xóa các runner có status là offline, bạn phải có key access token.
+
+- Ví dụ script:
+
+```
+#!/bin/bash
+
+while IFS= read -r tag;
+do
+    echo "### Clean up ci runners for tag $tag..."
+    for gitlab_runner in $(curl -s "$GITLAB_SERVER/api/v4/runners/all?tag_list=$tag&status=offline&private_token=$GITLAB_TOKEN" | jq ".[]" -c)
+    do
+        echo "Clean up runner $gitlab_runner"
+        runner_id=$(echo $gitlab_runner | jq '.id')
+        echo "Remove offline runner $runner_id"
+        curl -s "$GITLAB_SERVER/api/v4/runners/${runner_id}?private_token=$GITLAB_TOKEN" -X DELETE
+    done
+done < list_tags.txt
+```
+- `$GITLAB_TOKEN`, `$GITLAB_SERVER` được cái trong variables của CI/CD
