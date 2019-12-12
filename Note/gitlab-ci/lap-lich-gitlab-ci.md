@@ -1,5 +1,6 @@
 ## Bạn có thể lập lịch chạy gitlab-CI
-- Tình huống: Bạn muốn định kì lúc 4h sáng hàng ngày chạy 1 gitlab-ci để làm 1 việc gì đó. Cụ thể ở đây, mình viết gilab-ci để chạy 1 đoạn script xóa những runner đang có status offline.
+- Tình huống: Bạn muốn định kì lúc 4h sáng hàng ngày chạy 1 gitlab-ci để làm 1 việc gì đó. Cụ thể ở đây, mình viết gilab-ci để chạy 1 đoạn script xóa những runner đang có status offline. và `runner` được chạy phải có tags là `ci-general`
+
 - Gitlab-CI config:
 
 ```
