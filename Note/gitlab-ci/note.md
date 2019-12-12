@@ -24,5 +24,5 @@ run:clean-up-gitlab-runner:
 
 - và lập lịch cho nó ở:
 
-![lập lịch](../images/laplich.png)
+![lập lịch](../../images/laplich.png)
 
