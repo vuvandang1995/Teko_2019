@@ -68,3 +68,7 @@ done
    - kết quả: `foo bar baz bat`
    
 **lưu ý: Điểm khác nhau ở 2 vòng for trên là dấu !**
+
+## celery redis
+- Hiện tại mới chỉ support cho python 3.6 đổ xuống
+## Khi dùng helmfile, nhớ cài thêm influxdb cho hook update
