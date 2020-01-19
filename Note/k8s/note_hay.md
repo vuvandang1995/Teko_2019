@@ -27,3 +27,28 @@
   - Cách 2: tạo bằng file yaml định nghĩa HPA
   
   
+# Deployment, Replicaset, Pod
+- `Replicaset`quản lý các `Pod`, nó đảm bảo số lượng các pod tồn tại trong 1 thời điểm thông qua tham số `replica: 3`
+- `Deployment` quản lý các `replicaset`
+- Khi tạo một `deployment`, nó sinh ra một `replicaset`tương ứng. 
+- **Khi bạn update Deployment, nó sẽ sinh ra một bản Replicaset, tương ứng với những gì bạn update Deployemnt. Điểu này có nghĩa rằng, bạn có thể dựa vào số replicaset của Deployment đó, để biết số lần update, mỗi lần update cái gì, và có thể rollback lại tới bản replicaset nào bạn muốn**
+
+![replicaset](../../images/replicaset.png)
+
+- Xem lịch sử update `Deployment`:
+
+![history-deployment](../../images/history-deployment.png)
+
+- Xem chi tiết lần update đó :
+
+![history-revison](../../images/history-revison.png)
+
+- `rollback` `deployment` lại bản replicaset nào, dự vào `revision` của replicaset:
+
+`kubectl -n authen-service rollout undo deployment authen-api-app --to-revision=2`
+
+
+
+
+
+
