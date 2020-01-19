@@ -33,7 +33,7 @@
 - Khi tạo một `deployment`, nó sinh ra một `replicaset`tương ứng. 
 - **Khi bạn update Deployment, nó sẽ sinh ra một bản Replicaset, tương ứng với những gì bạn update Deployemnt. Điểu này có nghĩa rằng, bạn có thể dựa vào số replicaset của Deployment đó, để biết số lần update, mỗi lần update cái gì, và có thể rollback lại tới bản replicaset nào bạn muốn**
 
-![replicaset](../../images/replicaset.png)
+![relicaset](../../images/relicaset.png)
 
 - Xem lịch sử update `Deployment`:
 
@@ -46,6 +46,72 @@
 - `rollback` `deployment` lại bản replicaset nào, dự vào `revision` của replicaset:
 
 `kubectl -n authen-service rollout undo deployment authen-api-app --to-revision=2`
+
+# DaemonSet
+- `DaemonSet` **đảm bảo** nỗi `Worker Node`sẽ tồn tại một pod. Nghĩa là 1 Cluster có 3 `worker node`, khi bạn tạo 1 app có kind là `DaemonSet`, nó sẽ tạo ra 3 pod nằm trên mỗi `worker node`. Một số app dùng DaemonSet phổ biến như Loki, fluent-bit... để lấy logs trên tất cả các node... 
+
+- 2 từ **Đảm bảo** của `ReplicaSet`, `DaemonSet` nghĩa là nếu pod bị xóa, nó sẽ tạo lại
+
+# Job
+- `Job` sẽ tạo Pod để hoàn thành một tác vụ nào đó. Nếu tác vụ thành công, nó báo hoàn thành và ngược lại. 
+- `Job` thường được sử dụng trong trường hợp migrate database, backup data, kiểm tra gì đó.
+
+```
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: myjob
+spec:
+  # Số lần chạy POD thành công
+  completions: 10
+  # Số lần tạo chạy lại POD bị lỗi, trước khi đánh dấu job thất bại
+  backoffLimit: 3
+  # Số POD chạy song song
+  parallelism: 2
+  # Số giây tối đa của JOB, quá thời hạn trên hệ thống ngắt JOB
+  activeDeadlineSeconds: 120
+
+  template:
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command:
+          - /bin/sh
+          - -c
+          - date; echo "Job executed"
+      restartPolicy: Never
+```
+
+# CronJob
+- `CronJob` tạo pod để chạy 1 tác vụ nào đó theo đúng lịch đề ra
+
+```
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: mycronjob
+spec:
+  # Một phút chạy một Job
+  schedule: "*/1 * * * *"
+  # Số Job lưu lại
+  successfulJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: busybox
+            image: busybox
+            args:
+            - /bin/sh
+            - -c
+            - date; echo "Job in CronJob"
+          restartPolicy: Never
+```
+
+![timecronjob](../../images/timecronjob.png)
+
 
 
 
