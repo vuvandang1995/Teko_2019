@@ -14,7 +14,7 @@
 
 ![selfLinkpod](../../images/selfLinkpod.png)
 
-- Muốn xem kết quả xử lý pod đó mà không cần portforword service nữa:
+- Muốn xem kết quả xử lý pod đó mà không cần port-forward service nữa:
 
 ![proxypod](../../images/proxypod.png)
 
